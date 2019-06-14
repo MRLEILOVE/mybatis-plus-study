@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leigq.www.mybatisplusstudy.domain.mapper.StaffMapper">
+  <resultMap id="BaseResultMap" type="com.leigq.www.mybatisplusstudy.domain.entity.Staff">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="TINYINT" property="age" />
+    <result column="work_age" jdbcType="TINYINT" property="workAge" />
+    <result column="wages" jdbcType="DECIMAL" property="wages" />
+    <result column="d_id" jdbcType="BIGINT" property="dId" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, `name`, age, work_age, wages, d_id, version
+  </sql>
+</mapper>

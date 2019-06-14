@@ -1,0 +1,13 @@
+spring:
+    datasource:
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIiEeKPAtT7rZ9joC1cUOMr38O7Nb4iMup+Htp1HzXwqBTrITZMDyfvkxFh4jJ1KbIUfgHxcboCPsXCEeKxyE1kCAwEAAQ==
+        password: OjbA1wbgJa5nF9UxWfkAM0y6H9YXF6p3j3bvmNQW8tMeaoPpQAx7qlmF//AKlyKINg4VxkdwY16UjfEA+anjSA==
+        url: jdbc:mysql://localhost:3306/mybatis_plus_study?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+        username: root
+
+
+
+
+
+
+

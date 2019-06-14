@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: config,stat,wall,slf4j
+      initialSize: 5
+      maxActive: 20
+      maxPoolPreparedStatementPerConnectionSize: 20
+      maxWait: 60000
+      minEvictableIdleTimeMillis: 300000
+      minIdle: 5
+      poolPreparedStatements: true
+      testOnBorrow: false
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      type: com.alibaba.druid.pool.DruidDataSource
+      validationQuery: SELECT 1 FROM DUAL
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+server:
+    tomcat:
+        uri-encoding: UTF-8
+
+mybatis-plus:
+  mapper-locations: classpath*:/mappers/**/*.xml
+  type-aliases-package: com.leigq.www.mybatisplusstudy.domain.entity
+  configuration:
+    use-generated-keys: true
+    map-underscore-to-camel-case: true
