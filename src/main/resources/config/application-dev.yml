@@ -56,3 +56,10 @@ management:
             exposure:
                 include: '*'
 
+# ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ myBatisPlus配置 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ #
+mybatis-plus:
+  ## 配置
+  configuration:
+    # 配置sql打印日志 https://blog.csdn.net/xiaocy66/article/details/83309903
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
