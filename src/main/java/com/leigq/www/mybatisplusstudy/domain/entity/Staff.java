@@ -1,6 +1,7 @@
 package com.leigq.www.mybatisplusstudy.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -8,15 +9,17 @@ import java.math.BigDecimal;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
 * Created by Mybatis Generator 2019/06/14
 */
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(value="com.leigq.www.mybatisplusstudy.domain.entity.Staff")
 @Data
 @TableName(value = "staff")
 @Builder
-public class Staff implements Serializable {
+public class Staff extends Model<Staff> implements Serializable {
     /**
      * 主键
      */
