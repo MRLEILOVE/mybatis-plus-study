@@ -1,6 +1,7 @@
 spring:
     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 数据源 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ #
     datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
         password: Q0eJGTbRlTvTnjRFj76Vkbdo9H4PmEtC4DVBHHISQl2Y4+CC5Ohg3NTQ/Ah+c/FDe1jjqzx02DoAnXFyrokEDA==
         # 关于MySql链接url参数的设置详解：https://www.cnblogs.com/softidea/p/5765624.html
         url: jdbc:mysql://localhost:3306/mybatis_plus_study?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&autoReconnect=true&serverTimezone=UTC&rewriteBatchedStatements=true
