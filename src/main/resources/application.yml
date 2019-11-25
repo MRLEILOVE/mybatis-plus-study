@@ -1,18 +1,59 @@
+## ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓下面配置（此配置文件）为3个环境公用↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+# ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓服务器配置 配置支持HTTPS: http://www.imooc.com/article/274138 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ #
+server:
+  # 建议不要直接写死，可以在VM options中通过-DServer.port=8080配置
+  port: 8080
+  http2:
+    enabled: true
+  # SpringBoot使用Undertow代替tomcat：https://www.jianshu.com/p/558f4504d591
+  # Spring Boot 内嵌容器Undertow参数设置: https://www.cnblogs.com/duanxz/p/9337022.html
+  undertow:
+    # IO线程数, 它主要执行非阻塞的任务，它们会负责多个连接，默认设置每个CPU核心一个线程，不可设置过大，否则启动项目会报错：打开文件数过多
+    io-threads: 16
+    # 阻塞任务线程池，当执行类似servlet请求阻塞IO操作，undertow会从这个线程池中取得线程。它的值取决于系统线程执行任务的阻塞系数，默认值是 io-threads*8
+    worker-threads: 256
+    ## ↓↓↓↓↓↓ 以下配置会影响buffer，这些buffer会用于服务器连接的IO操作，有点类似netty的池化内存管理↓↓↓↓↓ #
+    # 每块buffer的空间大小，越小的空间被利用越充分，不要设置太大，以免影响其他应用，合适即可
+    buffer-size: 1024
+    # 是否分配的直接内存(NIO直接分配的堆外内存)
+    direct-buffers: true
+
 spring:
+  application:
+    name: mybatis-plus-study
   profiles:
     active: dev
 
-server:
-    tomcat:
-        uri-encoding: UTF-8
+  # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 数据源 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ #
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    ## Druid连接池配置，配置参考：https://blog.csdn.net/weixin_38187317/article/details/81562571
+    druid:
+      ## 监控过滤
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*'
+      ## 监控页面配置
+      stat-view-servlet:
+        # 页面地址
+        url-pattern: /druid/*
+        # 白名单 多个ip逗号隔开
+        allow: 127.0.0.1,192.168.163.1
+        # IP黑名单 (存在共同时，deny优先于allow) : 如果满足deny的话提示:Sorry, you are not permitted to view this page.
+        deny: 192.168.1.73
 
-# ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ myBatisPlus配置 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ #
+# ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ MyBatis Plus 配置 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ #
 mybatis-plus:
-  ## mapper.xml文件路径
+  # mybatis mapper文件的位置
   mapper-locations: classpath*:/mappers/**/*.xml
-  ## 实体包
+  # 在此处指明扫描实体类的包，在mapper.xml中就可以不用写pojo类的全路径名了
   type-aliases-package: com.leigq.www.mybatisplusstudy.domain.entity
-  ## 配置
   configuration:
+    # 使用mybatis插入自增主键ID的数据后返回自增的ID，配合keyProperty="id"使用
     use-generated-keys: true
+    # 设置自动驼峰命名转换
     map-underscore-to-camel-case: true
+#    config-location: classpath:mybatis-config.xml
